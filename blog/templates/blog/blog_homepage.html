@@ -11,13 +11,50 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
-                        <h1>Man must explore, and this is exploration at its greatest</h1>
-                        <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-                        <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>
+                    <div class="page-heading">
+                        <h1>He Shi's Blog</h1>
+                        <span class="subheading">What I am interested in</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-{% endblock %}
+
+
+    <!-- Category content-->
+    <div class="container">
+    <div class="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1">
+        <h3>Tags</h3>
+        {% for tag in tags %}
+            <h4>
+                <a href={{ tag.get_absolute_url }}>
+                <span class="glyphicon glyphicon-tag"></span> {{ tag.tag }}
+                </a>
+            </h4>
+        {% endfor %}
+    </div>
+    <div class="col-lg-8 col-md-8">
+        {% for post in posts %}
+                <div class="post-preview">
+                    <a href={{ post.get_absolute_url }}>
+                        <h2 class="post-title">
+                           {{ post.title }}
+                        </h2>
+                        <h3 class="post-subtitle">
+                           {{  post.subtitle }}
+                        </h3>
+                    </a>
+                    <h4>
+                        {% for tag in post.tags.all %}
+                            <a href={{ tag.get_absolute_url }}>
+                            <span class="glyphicon glyphicon-tag"></span>{{ tag.tag }}
+                            </a>
+                        {% endfor %}
+                    </h4>
+
+                    <p class="post-meta">Posted by <a href={% url 'blog.views.about' %}> He Shi </a> on {{ post.posted }} </p>
+                </div>
+        {% endfor %}
+    </div>
+    </div>
+    {% endblock %}

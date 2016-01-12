@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'markdown_deux',
     'blog',
 )
 
@@ -80,9 +81,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hosighost',
-        'USER': 'root',
-        'PASSWORD': '56099298xiao',
-        'HOST': 'localhost',
+        'USER': 'b7e6b6fce0fbef',
+        'PASSWORD': 'd6d69af4',
+        'HOST': 'us-cdbr-azure-northcentral-b.cloudapp.net',
         'PORT': '3306',
     }
 

@@ -1,43 +1,37 @@
 from django.db import models
-from django.db.models import permalink
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 
 class Tag(models.Model):
     tag = models.CharField(max_length=100, unique=True)
 
+    def __unicode__(self):
+        return '{}'.format(self.tag)
+
+    def get_absolute_url(self):
+        return '/blog/blog/tag/{}'.format(str(self.id))
+
+
 
 class Post(models.Model):
-
     title = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=100, unique=True)
     subtitle = models.CharField(max_length=100, default="")
+    background_picture = models.ImageField(upload_to='blog/static/img/', default='blog/static/img/post-bg.img')
     body = models.TextField()
     posted = models.DateField(db_index=True, auto_now_add=True)
-    category = models.ForeignKey('blog.Category')
     tags = models.ManyToManyField(Tag)
 
     def __unicode__(self):
         return '{}'.format(self.title)
 
-    @permalink
     def get_absolute_url(self):
-        return ('view_blog_post', None, {'slug': self.slug})
+        return '/blog/blog/post/{}'.format(str(self.id))
 
 
-class Category(models.Model):
-    title = models.CharField(max_length=100, db_index=True)
-    slug = models.SlugField(max_length=100, db_index=True)
-
-    def __unicode__(self):
-        return '{}'.format(self.title)
-
-    @permalink
-    def get_absolute_url(self):
-        return ('view_blog_category', None, {'slug': self.slug})
-
-
-
+    def get_static_background_picture_url(self):
+        garbage, true_url = str(self.background_picture.url).split('/', 1)
+        return "/{}".format(true_url)
 
 
 class Comment(models.Model):
@@ -45,12 +39,8 @@ class Comment(models.Model):
     body = models.TextField()
     posted = models.DateField(auto_now_add=True)
     author = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True)
     blog = models.ForeignKey('blog.Post', on_delete=models.CASCADE)
 
     def __unicode__(self):
         return '{}'.format(self.title)
 
-    @permalink
-    def get_absolute_url(self):
-        return ('view_blog_comment', None, {'slug': self.slug})
