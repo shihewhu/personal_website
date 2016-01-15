@@ -81,9 +81,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hosighost',
-        'USER': 'b7e6b6fce0fbef',
-        'PASSWORD': 'd6d69af4',
-        'HOST': 'us-cdbr-azure-northcentral-b.cloudapp.net',
+        'USER': 'root',
+        'PASSWORD': '56099298xiao',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 
@@ -95,13 +95,13 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = None
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

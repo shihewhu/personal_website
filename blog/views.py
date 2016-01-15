@@ -1,22 +1,32 @@
 from django.shortcuts import render
-from blog.models import Post, Tag
+from django.http import HttpResponseRedirect
+from blog.models import Post, Tag, Introduction
+from blog.forms import ContactForm
 # Create your views here.
 
 
 def index(request):
-    post_sorted_by_date_top_4 = Post.objects.order_by('-posted')
-    if len(post_sorted_by_date_top_4) > 4:
-        post_sorted_by_date_top_4 = post_sorted_by_date_top_4[:4]
-    return render(request, 'blog/index.html', {'posts': post_sorted_by_date_top_4})
+    post_sorted_by_date_top_4 = Post.objects.all().order_by('-posted')[:4]
+    return render(request, 'blog/index.html', {'post_list': post_sorted_by_date_top_4})
 
 
 def about(request):
-    return render(request, 'blog/about.html')
+    introduction = Introduction.objects.first()
+    return render(request, 'blog/about.html', {'introduction': introduction})
 
 
 def contact(request):
-    return render(request, 'blog/contact.html')
+    if request.method == "POST":
+        contact_form= ContactForm(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            return HttpResponseRedirect('/blog/thanks')
+    else:
+        contact_form = ContactForm()
+        return render(request, 'blog/contact.html', {'contact_form': contact_form})
 
+def thanks(request):
+    return  render(request, 'blog/thanks.html')
 
 def blog(request):
     """
