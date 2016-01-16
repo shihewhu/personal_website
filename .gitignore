@@ -47,3 +47,5 @@ Temporary Items
 .apdisk
 
 blog/migrations/*
+*.pyc
+blog/static/img/*
