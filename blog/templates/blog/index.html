@@ -13,7 +13,7 @@
                     <div class="site-heading">
                         <h1>He Shi</h1>
                         <hr class="small">
-                        <span class="subheading">Northeastern University Computer Science master candidate</span>
+                        <span class="subheading">{{ introduction.job_title }} in {{ introduction.job_company }}</span>
                     </div>
                 </div>
             </div>
@@ -34,6 +34,13 @@
                             {{  post.subtitle }}
                          </h3>
                      </a>
+                     <h4>
+                        {% for tag in post.tags.all %}
+                            <a href={{ tag.get_absolute_url }}>
+                            <span class="glyphicon glyphicon-tag"></span>{{ tag.tag }}
+                            </a>
+                        {% endfor %}
+                    </h4>
                      <p class="post-meta">Posted by <a href={% url 'blog.views.about' %}> He Shi </a> on {{ post.posted }} </p>
                  </div>
                  <hr>
