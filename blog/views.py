@@ -7,7 +7,9 @@ from blog.forms import ContactForm
 
 def index(request):
     post_sorted_by_date_top_4 = Post.objects.all().order_by('-posted')[:4]
-    return render(request, 'blog/index.html', {'post_list': post_sorted_by_date_top_4})
+    introduction = Introduction.objects.first()
+    return render(request, 'blog/index.html', {'post_list': post_sorted_by_date_top_4,
+                                               'introduction': introduction})
 
 
 def about(request):
