@@ -17,7 +17,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100, unique=True)
     subtitle = models.CharField(max_length=100, default="")
-    background_picture = models.ImageField(upload_to='blog/static/img/', default='blog/static/img/post-bg.img')
+    background_picture = models.ImageField(upload_to='blog/static/img/', default='/static/img/post-bg.jpg')
     body = models.TextField()
     posted = models.DateField(db_index=True, auto_now_add=True)
     tags = models.ManyToManyField(Tag)
