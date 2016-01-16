@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'hosighost.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hosighost',
-        'USER': 'root',
-        'PASSWORD': '56099298xiao',
+        'NAME': 'db_name',
+        'USER': 'username',
+        'PASSWORD': 'passwd',
         'HOST': 'localhost',
         'PORT': '3306',
     }
