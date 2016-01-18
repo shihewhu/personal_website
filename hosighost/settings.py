@@ -23,9 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'i7m@_az!#2aaq+*+(+^55k3_j4#-z0yywx0w2on9r1glxe&(14'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -108,3 +107,8 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/home/ubuntu/personal_website/personal_website/blog/static/'
+
+MEDIA_ROOT = '/home/ubuntu/personal_website/personal_website/blog/media/'
+
+MEDIA_URL = '/media/'
