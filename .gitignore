@@ -49,4 +49,4 @@ Temporary Items
 blog/migrations/*
 *.pyc
 blog/static/img/*
-mysite/settings.py
+
