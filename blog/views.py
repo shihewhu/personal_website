@@ -27,8 +27,11 @@ def contact(request):
         contact_form = ContactForm()
         return render(request, 'blog/contact.html', {'contact_form': contact_form})
 
+
 def thanks(request):
-    return  render(request, 'blog/thanks.html')
+    return render(request, 'blog/thanks.html')
+
+
 
 def blog(request):
     """
@@ -51,6 +54,7 @@ def post(request, post_id):
     """
     post = Post.objects.get(id=post_id)
     return render(request, 'blog/post.html', {'post': post})
+
 
 def tag(request, tag_id):
     """
